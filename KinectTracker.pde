@@ -5,8 +5,8 @@
 // https://github.com/shiffman/OpenKinect-for-Processing
 // http://shiffman.net/p5/kinect/
 
-class KinectTracker {
-
+class KinectTracker
+{
   // Depth threshold
   int threshold = 590;
 
@@ -115,4 +115,5 @@ class KinectTracker {
   void setThreshold(int t) {
     threshold =  t;
   }
+}
 }

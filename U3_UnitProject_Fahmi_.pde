@@ -23,8 +23,9 @@ int collisionx2 = 440 ;
 int collisiony = 260;
 int collisiony2 = 260;
 PImage normalbrad;
-PImage slappedbrad;
+PImage slappedbrad1;
 PImage bradbuttowski;
+PImage slapedbrad2;
 
 void setup() 
 {
@@ -40,7 +41,7 @@ void setup()
 void draw()
 {
     background(255);
-slappedbrad = loadImage("left brad.jpg");
+slappedbrad1 = loadImage("left brad.jpg");
 normalbrad = loadImage("straight brad.jpg");
   // Run the tracking analysis
   tracker.track();
@@ -62,18 +63,16 @@ normalbrad = loadImage("straight brad.jpg");
   ellipse(v2.x, v2.y, 20, 20);
   ellipse(collisionx, collisiony, 200, 260);
   ellipse(collisionx2, collisiony2, 200, 260);
-  
-  if (dist(collisionx, collisiony, newPointx, newPointy) < 100)
+
+ if (dist(collisionx, collisiony, newPointx, newPointy) < 100)
   {
     background(255);
-    image(slappedbrad, 0, 0);
-    
+    image(slappedbrad1, 0, 0);
   }
   else
   if  (dist(collisionx, collisiony, newPointx, newPointy) > 100)
   {
     background(255);
     image(normalbrad, 0, 0);
-    
   }
 }
