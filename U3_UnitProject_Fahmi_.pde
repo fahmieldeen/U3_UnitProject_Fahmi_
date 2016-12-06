@@ -10,6 +10,7 @@ import org.openkinect.freenect.*;
 
 Kinect kinect;
 KinectTracker tracker;
+Characters character;
 
 Minim minim;
 AudioPlayer player;  
@@ -22,6 +23,7 @@ int collisionx = 200 ;
 int collisionx2 = 440 ;
 int collisiony = 260;
 int collisiony2 = 260;
+boolean isActive = false;
 PImage normalbrad;
 PImage slappedbrad1;
 PImage bradbuttowski;
@@ -35,6 +37,7 @@ void setup()
   kinect = new Kinect(this);
   tracker = new KinectTracker();
   kinect.initDepth();
+  player = minim.loadFile("slap.mp3");
   
 }
 
@@ -47,7 +50,12 @@ normalbrad = loadImage("straight brad.jpg");
   tracker.track();
   // Show the image
   tracker.display();
+  Pvector();
+  collision();
+}
 
+void Pvector()
+{
   // Let's draw the raw location
   PVector v1 = tracker.getPos();
   fill(50, 100, 250, 200);
@@ -64,15 +72,21 @@ normalbrad = loadImage("straight brad.jpg");
   ellipse(collisionx, collisiony, 200, 260);
   ellipse(collisionx2, collisiony2, 200, 260);
 
+void collision()
+{
  if (dist(collisionx, collisiony, newPointx, newPointy) < 100)
   {
     background(255);
+    character.Draw();
     image(slappedbrad1, 0, 0);
+    player.play();
   }
   else
   if  (dist(collisionx, collisiony, newPointx, newPointy) > 100)
   {
     background(255);
+    character.Draw();
     image(normalbrad, 0, 0);
+    player.pause();
   }
 }
