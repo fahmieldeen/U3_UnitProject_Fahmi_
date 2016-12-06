@@ -23,29 +23,34 @@ int collisionx = 200 ;
 int collisionx2 = 440 ;
 int collisiony = 260;
 int collisiony2 = 260;
-boolean isActive = false;
+
+int Screen = 0;
+
 PImage normalbrad;
-PImage slappedbrad1;
+PImage slappedbrad;
 PImage bradbuttowski;
-PImage slapedbrad2;
+PImage hand;
 
 void setup() 
 {
   size(640, 520);
+  slappedbrad = loadImage("left brad.png");
+ normalbrad = loadImage("straight brad.png");
+ hand = loadImage("hand.png");
+ slappedbrad.resize(600, 500);
+ normalbrad.resize(600, 500);
+ hand.resize(300, 300);
   minim = new Minim(this);
-  player = minim.loadFile("");
+  player = minim.loadFile("Slap.mp3");
   kinect = new Kinect(this);
   tracker = new KinectTracker();
   kinect.initDepth();
-  player = minim.loadFile("slap.mp3");
   
 }
 
 void draw()
 {
     background(255);
-slappedbrad1 = loadImage("left brad.jpg");
-normalbrad = loadImage("straight brad.jpg");
   // Run the tracking analysis
   tracker.track();
   // Show the image
@@ -60,7 +65,7 @@ void Pvector()
   PVector v1 = tracker.getPos();
   fill(50, 100, 250, 200);
   noStroke();
-  newPointx = map(v1.x, 0, 480, 0, width);
+  newPointx = map(v1.x, 0, 320, 0, width);
   newPointy = map(v1.y, 0, 260, 0, height);
   ellipse(newPointx, newPointy, 20, 20);
 
@@ -68,25 +73,28 @@ void Pvector()
   PVector v2 = tracker.getLerpedPos();
   fill(100, 250, 50, 200);
   noStroke();
-  ellipse(v2.x, v2.y, 20, 20);
+  newPointx = map(v2.x, 0, 320, 0, width);
+  newPointy = map(v2.y, 0, 260, 0, height);
+  ellipse(newPointx, newPointy, 20, 20);
+  
   ellipse(collisionx, collisiony, 200, 260);
   ellipse(collisionx2, collisiony2, 200, 260);
+  
+  image(hand, v2.x, v2.y);
+  imageMode(CENTER);
+}
 
 void collision()
 {
  if (dist(collisionx, collisiony, newPointx, newPointy) < 100)
   {
-    background(255);
-    character.Draw();
-    image(slappedbrad1, 0, 0);
+    image(slappedbrad, width/2, height/2);
     player.play();
   }
   else
   if  (dist(collisionx, collisiony, newPointx, newPointy) > 100)
   {
-    background(255);
-    character.Draw();
-    image(normalbrad, 0, 0);
+    image(normalbrad, width/2, height/2);
     player.pause();
   }
 }
