@@ -1,11 +1,17 @@
+/*
+Hi! This game is called "Slap Brad Buttowski!" You must slap him as many times as you can.
+It itsn't really a game because there's no actual goal of the game, just slap him 
+as many times as you want and your points will go up accordingly.
+*/
+
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
 import ddf.minim.signals.*;
 import ddf.minim.spi.*;
-import ddf.minim.ugens.*;
+import ddf.minim.ugens.*; //minim for the slapping sound
 
-import org.openkinect.processing.*; 
+import org.openkinect.processing.*;  //library for kinect
 import org.openkinect.freenect.*;
 
 Kinect kinect;
@@ -14,14 +20,12 @@ KinectTracker tracker;
 Minim minim;
 AudioPlayer player;  
 
-int skip = 8;
-
-float newPointx;
+float newPointx; //the average point tracker 
 float newPointy;
-int collisionx = 320;
+int collisionx = 320; //for the collision circles 
 int collisiony = 500;
 
-int points = 0;
+int points = 0; //score counter 
 
 PImage normalbrad;
 PImage slappedbrad;
@@ -53,7 +57,7 @@ void draw()
   Pvector();
   textSize(28);
   fill(0, 50, 255);
-  text("points: " + points, 8, 20);
+  text("points: " + points, 8, 20); //displaying the amount of points 
 }
 
 
@@ -65,7 +69,7 @@ void Pvector()
   noStroke();
   newPointx = map(v1.x, 0, 320, 0, width);
   newPointy = map(v1.y, 0, 260, 0, height);
-  ellipse(newPointx, newPointy, 20, 20);
+  ellipse(newPointx, newPointy, 20, 20); //average point tracker (circle) so that it collides
 
   // Let's draw the "lerped" location
   PVector v2 = tracker.getLerpedPos();
@@ -82,8 +86,8 @@ void Pvector()
   {
     background(255);
     image(slappedbrad, width/2, height/2);
-    image(hand, v2.x, v2.y);
-    imageMode(CENTER);
+    image(hand, v2.x, v2.y); //draws the hand over the image rather than behind
+    imageMode(CENTER); //places all the images into the centre
     player.play();
     points = points + 1;
   } else
