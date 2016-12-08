@@ -1,9 +1,9 @@
-<h1>Unit 3 Final Project: SLAP THE PEOPLE YOU HATE?</h1>
+<h1>Unit 3 Final Project: SLAP BRAD BUTTOWSKI?</h1>
  
-<strong>Interaction</strong>: In this project, I will be using kinect, makey makey, and minim 
+<strong>Interaction</strong>: In this project, I will be using kinect, and minim 
  
-<strong>Description</strong>: 
- 
+<strong>Description</strong>: This game is called "slap brad buttowski", I used the kinect and minim as a way of interaction. The main objective of the game is to slap brad buttowski and get as many points as you can until you get bored and just quit the game. For this project, I first had to figure out how the kinect worked and how I could use it in my project, I then designed my game and decided to slap a cartoon character instead of an actual person. 
+
 <h2>Timeline</h2>
  
 <div>
