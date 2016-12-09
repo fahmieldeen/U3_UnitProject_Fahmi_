@@ -20,6 +20,8 @@ KinectTracker tracker;
 Minim minim;
 AudioPlayer player;  
 
+int skip = 8;
+
 float newPointx; //the average point tracker 
 float newPointy;
 int collisionx = 320; //for the collision circles 
@@ -57,7 +59,7 @@ void draw()
   Pvector();
   textSize(28);
   fill(0, 50, 255);
-  text("points: " + points, 8, 20); //displaying the amount of points 
+  text("points: " + points, 8, 20); //displaying the 
 }
 
 
